@@ -1,0 +1,4 @@
+v 4
+file . "comp.vhdl" "a065a3f9766f9c9872842643c758f4d81bdd0600" "20190724041652.884":
+  entity comp at 1( 0) + 0 on 85;
+  architecture data of comp at 14( 231) + 0 on 86;

@@ -4,7 +4,7 @@
 #include "main.h"
 #include <time.h>
 
-int test = 0;
+int test = 1;
 int head_test = 0;
 #define HEAD_SIZE 0x4D
 

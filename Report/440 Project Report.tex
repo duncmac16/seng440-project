@@ -69,12 +69,18 @@ In the actual implementation of the algorithm, the program would take in a file 
 The sign, step and chord were found through functions calls in the first iteration for the sake of convenience and readability. This was done knowing that it would later have to be optimized, but I thought it would be better to get the algorithm complete and readable before I started optimizing the code. There were multiple different things I did to get more out of readability and harm on speed performance. An example of this can be seen in figure 2, where I used a for loop to cycle through cases to find the leading bit.\\
 
 \begin{figure}[!h]
-        \includegraphics[width=\textwidth ]
+		\centering
+        \includegraphics[width=10cm ]
         {get_chord_for_loop.png}
         \caption{\label{fig:my-label} For loop used to find the leading one bit.}
 \end{figure}
+
 \subsection{Optimizations}
 
-To optimized the code, the parts of the code looked at were the parts that were called the most. All of the parts of code having to do with the compression and expansion could be improved by quite a bit.
+To optimized the code, the parts of the code looked at were the parts that were called the most. All of the parts of code having to do with the compression and expansion could be improved by quite a bit. The first thing that was done to optimize the code is to remove the for loop shown in figure 2. Using a for loop creates a significant amount of branching added instructions to increment the loop. There is also a lot of extra math that could be avoided. So the result of optimization produced a long string of if else statements. \\
+
+To optimize the compression further, all of the functions in the code to find the different sections of the code words were put into the same function. Doing this takes away the overhead of stack pushing and popping. After all of the function were brought together, the values that were previously returned using math were hard coded save on operations. The bit values were written in the way that they would be in the code word (ex. finding a chord of \texttt{0x4} would result in \texttt{0x40}). This helps save operations on shifting bits over when combining the values of step, chord and sign together. \\
+
+Another aspect of the code that was changed to reduce time is using the \texttt{register} key for the  \texttt{sample} variable. This being a highly modified value, it is important to remove the overhead of having to look in memory for this variable. The use of of \texttt{static inline} for the function makes the code in the function be placed in where the function call is, reducing the amount of stack used when running.\\
 \newpage
 \end{document}
