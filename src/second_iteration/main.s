@@ -10,285 +10,270 @@ _main:                                  ## @main
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$128, %rsp
-	movl	$0, -4(%rbp)
-	movl	%edi, -8(%rbp)
-	movq	%rsi, -16(%rbp)
-	cmpl	$0, _head_test(%rip)
-	je	LBB0_6
-## %bb.1:
-	movl	$0, -68(%rbp)
-LBB0_2:                                 ## =>This Inner Loop Header: Depth=1
-	cmpl	$77, -68(%rbp)
-	jge	LBB0_5
-## %bb.3:                               ##   in Loop: Header=BB0_2 Depth=1
-	jmp	LBB0_4
-LBB0_4:                                 ##   in Loop: Header=BB0_2 Depth=1
-	movl	-68(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -68(%rbp)
-	jmp	LBB0_2
-LBB0_5:
-	movl	$0, -4(%rbp)
-	jmp	LBB0_30
-LBB0_6:
-	cmpl	$0, _test(%rip)
-	je	LBB0_16
-## %bb.7:
-	movw	$-4352, -70(%rbp)       ## imm = 0xEF00
-	movswl	-70(%rbp), %eax
-	sarl	$8, %eax
-	movb	%al, %cl
-	movb	%cl, -71(%rbp)
-	movswl	-70(%rbp), %eax
-	andl	$255, %eax
-	movb	%al, %cl
-	movb	%cl, -72(%rbp)
-	movb	-71(%rbp), %cl
-	movsbl	%cl, %edi
-	movsbl	-72(%rbp), %esi
-	callq	_compress_sample
-	movb	%al, -73(%rbp)
-	movsbl	-73(%rbp), %edi
-	callq	_expand_word
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
+	pushq	%rbx
+	pushq	%rax
+	.cfi_offset %rbx, -56
+	.cfi_offset %r12, -48
+	.cfi_offset %r13, -40
+	.cfi_offset %r14, -32
+	.cfi_offset %r15, -24
 	leaq	L_.str(%rip), %rdi
-	movw	%ax, -76(%rbp)
-	movzwl	-70(%rbp), %esi
-	movsbl	-73(%rbp), %edx
-	movzwl	-76(%rbp), %ecx
-	movb	$0, %al
+	movl	$61184, %esi            ## imm = 0xEF00
+	movl	$113, %edx
+	movl	$61184, %ecx            ## imm = 0xEF00
+	xorl	%eax, %eax
 	callq	_printf
-	movl	$0, -80(%rbp)
-	movl	%eax, -84(%rbp)         ## 4-byte Spill
-LBB0_8:                                 ## =>This Inner Loop Header: Depth=1
-	cmpl	$8, -80(%rbp)
-	jge	LBB0_11
-## %bb.9:                               ##   in Loop: Header=BB0_8 Depth=1
-	movl	$1, %eax
-	movl	$16, %ecx
-	movswl	-70(%rbp), %edx
-	sarl	$1, %edx
-	movw	%dx, %si
-	movw	%si, -70(%rbp)
-	subl	-80(%rbp), %ecx
-                                        ## kill: def %cl killed %ecx
-	shll	%cl, %eax
-	xorl	$-1, %eax
-	movswl	-70(%rbp), %edx
-	andl	%eax, %edx
-	movw	%dx, %si
-	movw	%si, -70(%rbp)
-	movswl	-70(%rbp), %eax
-	sarl	$8, %eax
-	movb	%al, %cl
-	movb	%cl, -71(%rbp)
-	movswl	-70(%rbp), %eax
-	andl	$255, %eax
-	movb	%al, %cl
-	movb	%cl, -72(%rbp)
-	movb	-71(%rbp), %cl
-	movsbl	%cl, %edi
-	movsbl	-72(%rbp), %esi
-	callq	_compress_sample
-	movb	%al, -73(%rbp)
-	movsbl	-73(%rbp), %edi
-	callq	_expand_word
+	movl	$-4352, %r12d           ## imm = 0xEF00
+	movl	$16, %r13d
+	movl	$1, %r14d
+	.p2align	4, 0x90
+LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
+	movswl	%r12w, %eax
+	sarl	%eax
+	movl	$-2, %r12d
+	movl	%r13d, %ecx
+	roll	%cl, %r12d
+	andl	%eax, %r12d
+	movl	%r12d, %ebx
+	shrl	$8, %ebx
+	movl	%r12d, %eax
+	negw	%ax
+	cmovlw	%r12w, %ax
+	andl	$128, %ebx
+	movswl	%ax, %r15d
+	btl	$12, %r15d
+	jb	LBB0_2
+## %bb.3:                               ##   in Loop: Header=BB0_1 Depth=1
+	btl	$11, %r15d
+	jb	LBB0_4
+## %bb.5:                               ##   in Loop: Header=BB0_1 Depth=1
+	btl	$10, %r15d
+	jb	LBB0_6
+## %bb.7:                               ##   in Loop: Header=BB0_1 Depth=1
+	btl	$9, %r15d
+	jb	LBB0_8
+## %bb.9:                               ##   in Loop: Header=BB0_1 Depth=1
+	btl	$8, %r15d
+	jb	LBB0_10
+## %bb.11:                              ##   in Loop: Header=BB0_1 Depth=1
+	testb	%r15b, %r15b
+	js	LBB0_12
+## %bb.13:                              ##   in Loop: Header=BB0_1 Depth=1
+	testb	$64, %r15b
+	jne	LBB0_15
+## %bb.14:                              ##   in Loop: Header=BB0_1 Depth=1
+	xorl	%eax, %eax
+	movl	$1, %ecx
+	jmp	LBB0_16
+	.p2align	4, 0x90
+LBB0_2:                                 ##   in Loop: Header=BB0_1 Depth=1
+	movl	$112, %eax
+	movl	$8, %ecx
+	jmp	LBB0_16
+	.p2align	4, 0x90
+LBB0_4:                                 ##   in Loop: Header=BB0_1 Depth=1
+	movl	$96, %eax
+	movl	$7, %ecx
+	jmp	LBB0_16
+LBB0_6:                                 ##   in Loop: Header=BB0_1 Depth=1
+	movl	$80, %eax
+	movl	$6, %ecx
+	jmp	LBB0_16
+LBB0_8:                                 ##   in Loop: Header=BB0_1 Depth=1
+	movl	$64, %eax
+	movl	$5, %ecx
+	jmp	LBB0_16
+LBB0_10:                                ##   in Loop: Header=BB0_1 Depth=1
+	movl	$48, %eax
+	movl	$4, %ecx
+	jmp	LBB0_16
+LBB0_12:                                ##   in Loop: Header=BB0_1 Depth=1
+	movl	$32, %eax
+	movl	$3, %ecx
+	jmp	LBB0_16
+LBB0_15:                                ##   in Loop: Header=BB0_1 Depth=1
+	leaq	L_.str.4(%rip), %rdi
+	callq	_puts
+	movl	$16, %eax
+	movl	$2, %ecx
+	.p2align	4, 0x90
+LBB0_16:                                ##   in Loop: Header=BB0_1 Depth=1
+                                        ## kill: def %cl killed %cl killed %ecx
+	shrl	%cl, %r15d
+	orl	%ebx, %eax
+	andl	$15, %r15d
+	orl	%r15d, %eax
+	movl	%eax, %ebx
+	xorb	$-128, %bl
+	shrb	$4, %al
+	andb	$7, %al
+	movzbl	%al, %edx
+	leal	1(%rdx), %ecx
+                                        ## kill: def %cl killed %cl killed %ecx
+	shll	%cl, %r15d
+	testb	%dl, %dl
+	je	LBB0_18
+## %bb.17:                              ##   in Loop: Header=BB0_1 Depth=1
+	movl	$32, %edx
+	movl	%eax, %ecx
+	shll	%cl, %edx
+	andl	$65534, %r15d           ## imm = 0xFFFE
+	orl	%edx, %r15d
+LBB0_18:                                ##   in Loop: Header=BB0_1 Depth=1
+	movl	%r15d, %eax
+	negl	%eax
+	testb	%bl, %bl
+	cmovlel	%r15d, %eax
+	movzwl	%r12w, %edx
+	movzbl	%bl, %ecx
+	movzwl	%ax, %r8d
+	xorl	%eax, %eax
 	leaq	L_.str.1(%rip), %rdi
-	movw	%ax, -76(%rbp)
-	movl	-80(%rbp), %edx
-	addl	$1, %edx
-	movzwl	-70(%rbp), %esi
-	movzbl	-73(%rbp), %ecx
-	movzwl	-76(%rbp), %r8d
-	movl	%esi, -88(%rbp)         ## 4-byte Spill
-	movl	%edx, %esi
-	movl	-88(%rbp), %edx         ## 4-byte Reload
-	movb	$0, %al
+	movl	%r14d, %esi
 	callq	_printf
-	movl	%eax, -92(%rbp)         ## 4-byte Spill
-## %bb.10:                              ##   in Loop: Header=BB0_8 Depth=1
-	movl	-80(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -80(%rbp)
-	jmp	LBB0_8
-LBB0_11:
-	movw	$-7424, -70(%rbp)       ## imm = 0xE300
-	movswl	-70(%rbp), %eax
-	sarl	$8, %eax
-	movb	%al, %cl
-	movb	%cl, -71(%rbp)
-	movswl	-70(%rbp), %eax
-	andl	$255, %eax
-	movb	%al, %cl
-	movb	%cl, -72(%rbp)
-	movb	-71(%rbp), %cl
-	movsbl	%cl, %edi
-	movsbl	-72(%rbp), %esi
-	callq	_compress_sample
-	movb	%al, -73(%rbp)
-	movsbl	-73(%rbp), %edi
-	callq	_expand_word
-	leaq	L_.str(%rip), %rdi
-	movw	%ax, -76(%rbp)
-	movzwl	-70(%rbp), %esi
-	movsbl	-73(%rbp), %edx
-	movzwl	-76(%rbp), %ecx
-	movb	$0, %al
-	callq	_printf
-	movl	$0, -80(%rbp)
-	movl	%eax, -96(%rbp)         ## 4-byte Spill
-LBB0_12:                                ## =>This Inner Loop Header: Depth=1
-	cmpl	$8, -80(%rbp)
-	jge	LBB0_15
-## %bb.13:                              ##   in Loop: Header=BB0_12 Depth=1
-	movl	$1, %eax
-	movl	$16, %ecx
-	movswl	-70(%rbp), %edx
-	sarl	$1, %edx
-	movw	%dx, %si
-	movw	%si, -70(%rbp)
-	subl	-80(%rbp), %ecx
-                                        ## kill: def %cl killed %ecx
-	shll	%cl, %eax
-	xorl	$-1, %eax
-	movswl	-70(%rbp), %edx
-	andl	%eax, %edx
-	movw	%dx, %si
-	movw	%si, -70(%rbp)
-	movswl	-70(%rbp), %eax
-	sarl	$8, %eax
-	movb	%al, %cl
-	movb	%cl, -71(%rbp)
-	movswl	-70(%rbp), %eax
-	andl	$255, %eax
-	movb	%al, %cl
-	movb	%cl, -72(%rbp)
-	movb	-71(%rbp), %cl
-	movsbl	%cl, %edi
-	movsbl	-72(%rbp), %esi
-	callq	_compress_sample
-	movb	%al, -73(%rbp)
-	movsbl	-73(%rbp), %edi
-	callq	_expand_word
-	leaq	L_.str.1(%rip), %rdi
-	movw	%ax, -76(%rbp)
-	movl	-80(%rbp), %edx
-	addl	$1, %edx
-	movzwl	-70(%rbp), %esi
-	movzbl	-73(%rbp), %ecx
-	movzwl	-76(%rbp), %r8d
-	movl	%esi, -100(%rbp)        ## 4-byte Spill
-	movl	%edx, %esi
-	movl	-100(%rbp), %edx        ## 4-byte Reload
-	movb	$0, %al
-	callq	_printf
-	movl	%eax, -104(%rbp)        ## 4-byte Spill
-## %bb.14:                              ##   in Loop: Header=BB0_12 Depth=1
-	movl	-80(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -80(%rbp)
-	jmp	LBB0_12
-LBB0_15:
-	leaq	L_.str.2(%rip), %rdi
-	leaq	L_.str.3(%rip), %rsi
-	movb	$0, %al
-	callq	_printf
-	movw	$0, -70(%rbp)
-	movswl	-70(%rbp), %ecx
-	sarl	$8, %ecx
-	movb	%cl, %dl
-	movb	%dl, -71(%rbp)
-	movswl	-70(%rbp), %ecx
-	andl	$255, %ecx
-	movb	%cl, %dl
-	movb	%dl, -72(%rbp)
-	movb	-71(%rbp), %dl
-	movsbl	%dl, %edi
-	movsbl	-72(%rbp), %esi
-	movl	%eax, -108(%rbp)        ## 4-byte Spill
-	callq	_compress_sample
-	movb	%al, -73(%rbp)
-	movsbl	-73(%rbp), %edi
-	callq	_expand_word
-	leaq	L_.str(%rip), %rdi
-	movw	%ax, -76(%rbp)
-	movzwl	-70(%rbp), %esi
-	movzbl	-73(%rbp), %edx
-	movzwl	-76(%rbp), %ecx
-	movb	$0, %al
-	callq	_printf
-	movl	$0, -4(%rbp)
-	movl	%eax, -112(%rbp)        ## 4-byte Spill
-	jmp	LBB0_30
-LBB0_16:
-	leaq	L_.str.4(%rip), %rsi
-	movl	$2, %eax
-	movl	%eax, %edx
-	movq	-16(%rbp), %rcx
-	movq	8(%rcx), %rdi
-	callq	_strncmp
-	cmpl	$0, %eax
-	jne	LBB0_18
-## %bb.17:
-	jmp	LBB0_21
-LBB0_18:
-	leaq	L_.str.5(%rip), %rsi
-	movl	$2, %eax
-	movl	%eax, %edx
-	movq	-16(%rbp), %rcx
-	movq	8(%rcx), %rdi
-	callq	_strncmp
-	cmpl	$0, %eax
-	jne	LBB0_20
+	decl	%r13d
+	incl	%r14d
+	cmpl	$8, %r13d
+	jne	LBB0_1
 ## %bb.19:
-	leaq	L_.str.2(%rip), %rdi
-	leaq	L_.str.6(%rip), %rsi
-	movb	$0, %al
+	leaq	L_.str(%rip), %rdi
+	movl	$58112, %esi            ## imm = 0xE300
+	movl	$125, %edx
+	movl	$58112, %ecx            ## imm = 0xE300
+	xorl	%eax, %eax
 	callq	_printf
-	movl	%eax, -116(%rbp)        ## 4-byte Spill
-LBB0_20:
-	jmp	LBB0_21
-LBB0_21:
-	leaq	L_.str.4(%rip), %rsi
-	movl	$2, %eax
-	movl	%eax, %edx
-	movq	-16(%rbp), %rcx
-	movq	8(%rcx), %rdi
-	callq	_strncmp
-	cmpl	$0, %eax
-	jne	LBB0_24
-## %bb.22:
-	cmpl	$4, -8(%rbp)
-	jle	LBB0_24
-## %bb.23:
-	jmp	LBB0_29
-LBB0_24:
-	leaq	L_.str.5(%rip), %rsi
-	movl	$2, %eax
-	movl	%eax, %edx
-	movq	-16(%rbp), %rcx
-	movq	8(%rcx), %rdi
-	callq	_strncmp
-	cmpl	$0, %eax
-	jne	LBB0_27
-## %bb.25:
-	cmpl	$4, -8(%rbp)
-	jle	LBB0_27
-## %bb.26:
-	jmp	LBB0_28
-LBB0_27:
-	leaq	L_.str.2(%rip), %rdi
-	leaq	L_.str.7(%rip), %rsi
-	movb	$0, %al
+	movl	$-7424, %r12d           ## imm = 0xE300
+	movl	$16, %r13d
+	movl	$1, %r14d
+	.p2align	4, 0x90
+LBB0_20:                                ## =>This Inner Loop Header: Depth=1
+	movswl	%r12w, %eax
+	sarl	%eax
+	movl	$-2, %r12d
+	movl	%r13d, %ecx
+	roll	%cl, %r12d
+	andl	%eax, %r12d
+	movl	%r12d, %ebx
+	shrl	$8, %ebx
+	movl	%r12d, %eax
+	negw	%ax
+	cmovlw	%r12w, %ax
+	andl	$128, %ebx
+	movswl	%ax, %r15d
+	btl	$12, %r15d
+	jb	LBB0_21
+## %bb.22:                              ##   in Loop: Header=BB0_20 Depth=1
+	btl	$11, %r15d
+	jb	LBB0_23
+## %bb.24:                              ##   in Loop: Header=BB0_20 Depth=1
+	btl	$10, %r15d
+	jb	LBB0_25
+## %bb.26:                              ##   in Loop: Header=BB0_20 Depth=1
+	btl	$9, %r15d
+	jb	LBB0_27
+## %bb.28:                              ##   in Loop: Header=BB0_20 Depth=1
+	btl	$8, %r15d
+	jb	LBB0_29
+## %bb.30:                              ##   in Loop: Header=BB0_20 Depth=1
+	testb	%r15b, %r15b
+	js	LBB0_31
+## %bb.32:                              ##   in Loop: Header=BB0_20 Depth=1
+	testb	$64, %r15b
+	jne	LBB0_34
+## %bb.33:                              ##   in Loop: Header=BB0_20 Depth=1
+	xorl	%eax, %eax
+	movl	$1, %ecx
+	jmp	LBB0_35
+	.p2align	4, 0x90
+LBB0_21:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	$112, %eax
+	movl	$8, %ecx
+	jmp	LBB0_35
+	.p2align	4, 0x90
+LBB0_23:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	$96, %eax
+	movl	$7, %ecx
+	jmp	LBB0_35
+LBB0_25:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	$80, %eax
+	movl	$6, %ecx
+	jmp	LBB0_35
+LBB0_27:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	$64, %eax
+	movl	$5, %ecx
+	jmp	LBB0_35
+LBB0_29:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	$48, %eax
+	movl	$4, %ecx
+	jmp	LBB0_35
+LBB0_31:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	$32, %eax
+	movl	$3, %ecx
+	jmp	LBB0_35
+LBB0_34:                                ##   in Loop: Header=BB0_20 Depth=1
+	leaq	L_.str.4(%rip), %rdi
+	callq	_puts
+	movl	$16, %eax
+	movl	$2, %ecx
+	.p2align	4, 0x90
+LBB0_35:                                ##   in Loop: Header=BB0_20 Depth=1
+                                        ## kill: def %cl killed %cl killed %ecx
+	shrl	%cl, %r15d
+	orl	%ebx, %eax
+	andl	$15, %r15d
+	orl	%r15d, %eax
+	movl	%eax, %ebx
+	xorb	$-128, %bl
+	shrb	$4, %al
+	andb	$7, %al
+	movzbl	%al, %edx
+	leal	1(%rdx), %ecx
+                                        ## kill: def %cl killed %cl killed %ecx
+	shll	%cl, %r15d
+	testb	%dl, %dl
+	je	LBB0_37
+## %bb.36:                              ##   in Loop: Header=BB0_20 Depth=1
+	movl	$32, %edx
+	movl	%eax, %ecx
+	shll	%cl, %edx
+	andl	$65534, %r15d           ## imm = 0xFFFE
+	orl	%edx, %r15d
+LBB0_37:                                ##   in Loop: Header=BB0_20 Depth=1
+	movl	%r15d, %eax
+	negl	%eax
+	testb	%bl, %bl
+	cmovlel	%r15d, %eax
+	movzwl	%r12w, %edx
+	movzbl	%bl, %ecx
+	movzwl	%ax, %r8d
+	xorl	%eax, %eax
+	leaq	L_.str.1(%rip), %rdi
+	movl	%r14d, %esi
 	callq	_printf
-	movl	%eax, -120(%rbp)        ## 4-byte Spill
-LBB0_28:
-	jmp	LBB0_29
-LBB0_29:
-	movl	$0, -4(%rbp)
-LBB0_30:
-	movl	-4(%rbp), %eax
-	addq	$128, %rsp
+	decl	%r13d
+	incl	%r14d
+	cmpl	$8, %r13d
+	jne	LBB0_20
+## %bb.38:
+	leaq	L_.str.3(%rip), %rdi
+	callq	_puts
+	leaq	L_.str(%rip), %rdi
+	xorl	%esi, %esi
+	movl	$128, %edx
+	xorl	%ecx, %ecx
+	xorl	%eax, %eax
+	callq	_printf
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -303,156 +288,82 @@ _compress_sample:                       ## @compress_sample
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movb	%sil, %al
-	movb	%dil, %cl
-	movb	%cl, -1(%rbp)
-	movb	%al, -2(%rbp)
-	movsbl	-1(%rbp), %esi
-	shll	$8, %esi
-	movsbl	-2(%rbp), %edi
-	andl	$255, %edi
-	orl	%edi, %esi
-	movw	%si, %dx
-	movw	%dx, -4(%rbp)
-	movb	$0, -5(%rbp)
-	movb	$-128, -6(%rbp)
-	movb	$0, -7(%rbp)
-	movw	$0, -10(%rbp)
-	movb	$0, -11(%rbp)
-	movswl	-4(%rbp), %esi
-	cmpl	$0, %esi
-	jge	LBB1_2
-## %bb.1:
-	movswl	-4(%rbp), %eax
-	imull	$-1, %eax, %eax
-	movw	%ax, %cx
-	movw	%cx, -4(%rbp)
-	movb	$0, -6(%rbp)
-LBB1_2:
-	movswl	-4(%rbp), %eax
-	andl	$4096, %eax             ## imm = 0x1000
-	cmpl	$0, %eax
-	je	LBB1_4
-## %bb.3:
-	movb	$112, -11(%rbp)
-	movswl	-4(%rbp), %eax
-	sarl	$8, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-	jmp	LBB1_23
-LBB1_4:
-	movswl	-4(%rbp), %eax
-	andl	$2048, %eax             ## imm = 0x800
-	cmpl	$0, %eax
-	je	LBB1_6
-## %bb.5:
-	movb	$96, -11(%rbp)
-	movswl	-4(%rbp), %eax
-	sarl	$7, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-	jmp	LBB1_22
-LBB1_6:
-	movswl	-4(%rbp), %eax
-	andl	$1024, %eax             ## imm = 0x400
-	cmpl	$0, %eax
-	je	LBB1_8
-## %bb.7:
-	movb	$80, -11(%rbp)
-	movswl	-4(%rbp), %eax
-	sarl	$6, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-	jmp	LBB1_21
-LBB1_8:
-	movswl	-4(%rbp), %eax
-	andl	$512, %eax              ## imm = 0x200
-	cmpl	$0, %eax
-	je	LBB1_10
-## %bb.9:
-	movb	$64, -11(%rbp)
-	movswl	-4(%rbp), %eax
-	sarl	$5, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-	jmp	LBB1_20
-LBB1_10:
-	movswl	-4(%rbp), %eax
-	andl	$256, %eax              ## imm = 0x100
-	cmpl	$0, %eax
-	je	LBB1_12
-## %bb.11:
-	movb	$48, -11(%rbp)
-	movswl	-4(%rbp), %eax
-	sarl	$4, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-	jmp	LBB1_19
-LBB1_12:
-	movswl	-4(%rbp), %eax
-	andl	$128, %eax
-	cmpl	$0, %eax
-	je	LBB1_14
+	pushq	%r14
+	pushq	%rbx
+	.cfi_offset %rbx, -32
+	.cfi_offset %r14, -24
+	movl	%edi, %r14d
+	shll	$8, %edi
+	movzbl	%sil, %eax
+	orl	%edi, %eax
+	movl	%eax, %ecx
+	negw	%cx
+	cmovlw	%ax, %cx
+	notl	%r14d
+	andl	$128, %r14d
+	movswl	%cx, %ebx
+	btl	$12, %ebx
+	jb	LBB1_1
+## %bb.2:
+	btl	$11, %ebx
+	jb	LBB1_3
+## %bb.4:
+	btl	$10, %ebx
+	jb	LBB1_5
+## %bb.6:
+	btl	$9, %ebx
+	jb	LBB1_7
+## %bb.8:
+	btl	$8, %ebx
+	jb	LBB1_9
+## %bb.10:
+	testb	%bl, %bl
+	js	LBB1_11
+## %bb.12:
+	testb	$64, %bl
+	jne	LBB1_14
 ## %bb.13:
-	movb	$32, -11(%rbp)
-	movswl	-4(%rbp), %eax
-	sarl	$3, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-	jmp	LBB1_18
+	xorl	%eax, %eax
+	movl	$1, %ecx
+	jmp	LBB1_15
+LBB1_1:
+	movl	$112, %eax
+	movl	$8, %ecx
+	jmp	LBB1_15
+LBB1_3:
+	movl	$96, %eax
+	movl	$7, %ecx
+	jmp	LBB1_15
+LBB1_5:
+	movl	$80, %eax
+	movl	$6, %ecx
+	jmp	LBB1_15
+LBB1_7:
+	movl	$64, %eax
+	movl	$5, %ecx
+	jmp	LBB1_15
+LBB1_9:
+	movl	$48, %eax
+	movl	$4, %ecx
+	jmp	LBB1_15
+LBB1_11:
+	movl	$32, %eax
+	movl	$3, %ecx
+	jmp	LBB1_15
 LBB1_14:
-	movswl	-4(%rbp), %eax
-	andl	$64, %eax
-	cmpl	$0, %eax
-	je	LBB1_16
-## %bb.15:
-	leaq	L_.str.2(%rip), %rdi
-	leaq	L_.str.8(%rip), %rsi
-	movb	$0, %al
-	callq	_printf
-	movb	$16, -11(%rbp)
-	movswl	-4(%rbp), %ecx
-	sarl	$2, %ecx
-	andl	$15, %ecx
-	movb	%cl, %dl
-	movb	%dl, -7(%rbp)
-	movl	%eax, -16(%rbp)         ## 4-byte Spill
-	jmp	LBB1_17
-LBB1_16:
-	movswl	-4(%rbp), %eax
-	sarl	$1, %eax
-	andl	$15, %eax
-	movb	%al, %cl
-	movb	%cl, -7(%rbp)
-LBB1_17:
-	jmp	LBB1_18
-LBB1_18:
-	jmp	LBB1_19
-LBB1_19:
-	jmp	LBB1_20
-LBB1_20:
-	jmp	LBB1_21
-LBB1_21:
-	jmp	LBB1_22
-LBB1_22:
-	jmp	LBB1_23
-LBB1_23:
-	movsbl	-6(%rbp), %eax
-	movsbl	-11(%rbp), %ecx
-	orl	%ecx, %eax
-	movsbl	-7(%rbp), %ecx
-	orl	%ecx, %eax
-	movb	%al, %dl
-	movb	%dl, -5(%rbp)
-	movsbl	-5(%rbp), %eax
-	addq	$16, %rsp
+	leaq	L_.str.4(%rip), %rdi
+	callq	_puts
+	movl	$16, %eax
+	movl	$2, %ecx
+LBB1_15:
+                                        ## kill: def %cl killed %cl killed %ecx
+	shrl	%cl, %ebx
+	orl	%r14d, %eax
+	andl	$15, %ebx
+	orl	%eax, %ebx
+	movsbl	%bl, %eax
+	popq	%rbx
+	popq	%r14
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -467,49 +378,29 @@ _expand_word:                           ## @expand_word
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	movb	%dil, %al
-	movb	%al, -1(%rbp)
-	movw	$0, -4(%rbp)
-	movsbl	-1(%rbp), %edi
-	sarl	$4, %edi
-	andl	$7, %edi
-	movb	%dil, %al
-	movb	%al, -5(%rbp)
-	movsbl	-1(%rbp), %edi
-	andl	$15, %edi
-	movw	%di, %cx
-	movw	%cx, -8(%rbp)
-	movswl	-8(%rbp), %edi
-	movsbl	-5(%rbp), %edx
-	addl	$1, %edx
-	movl	%edx, %ecx
-                                        ## kill: def %cl killed %ecx
-	shll	%cl, %edi
-	movw	%di, %si
-	movw	%si, -4(%rbp)
-	cmpb	$0, -5(%rbp)
+	movl	%edi, %eax
+	shrb	$4, %al
+	andb	$7, %al
+	movl	%edi, %edx
+	andl	$15, %edx
+	movzbl	%al, %esi
+	leal	1(%rsi), %ecx
+                                        ## kill: def %cl killed %cl killed %ecx
+	shll	%cl, %edx
+	testb	%sil, %sil
 	je	LBB2_2
 ## %bb.1:
-	movl	$1, %eax
-	movsbl	-5(%rbp), %ecx
-	addl	$5, %ecx
-                                        ## kill: def %cl killed %ecx
-	shll	%cl, %eax
-	movswl	-4(%rbp), %edx
-	orl	%eax, %edx
-	movw	%dx, %si
-	movw	%si, -4(%rbp)
+	movl	$32, %esi
+	movl	%eax, %ecx
+	shll	%cl, %esi
+	andl	$65534, %edx            ## imm = 0xFFFE
+	orl	%esi, %edx
 LBB2_2:
-	movsbl	-1(%rbp), %eax
-	cmpl	$0, %eax
-	jle	LBB2_4
-## %bb.3:
-	movswl	-4(%rbp), %eax
-	imull	$-1, %eax, %eax
-	movw	%ax, %cx
-	movw	%cx, -4(%rbp)
-LBB2_4:
-	movswl	-4(%rbp), %eax
+	movl	%edx, %eax
+	negl	%eax
+	testb	%dil, %dil
+	cmovlew	%dx, %ax
+	cwtl
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -529,25 +420,10 @@ L_.str:                                 ## @.str
 L_.str.1:                               ## @.str.1
 	.asciz	"%d Shift\nSample: %x\nCodeword: %x \nExpanded: %x\n\n"
 
-L_.str.2:                               ## @.str.2
-	.asciz	"%s\n"
-
 L_.str.3:                               ## @.str.3
 	.asciz	"0x0000 Test"
 
 L_.str.4:                               ## @.str.4
-	.asciz	"-c"
-
-L_.str.5:                               ## @.str.5
-	.asciz	"-e"
-
-L_.str.6:                               ## @.str.6
-	.asciz	"Expanding file"
-
-L_.str.7:                               ## @.str.7
-	.asciz	"Usage: ./comp <mode> <file_name> -o <output_file_name>\nModes: -c -> compress,\n       -e -> expand"
-
-L_.str.8:                               ## @.str.8
 	.asciz	"here"
 
 

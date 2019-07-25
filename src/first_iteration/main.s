@@ -5,9 +5,6 @@
 _main:                                  ## @main
 	.cfi_startproc
 ## %bb.0:
-	cmpl	$0, _test(%rip)
-	je	LBB0_26
-## %bb.1:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset %rbp, -16
@@ -35,7 +32,7 @@ _main:                                  ## @main
 	movl	$1, %r14d
 	leaq	L_.str.1(%rip), %r15
 	.p2align	4, 0x90
-LBB0_2:                                 ## =>This Inner Loop Header: Depth=1
+LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	movswl	%r13w, %eax
 	sarl	%eax
 	movl	$-2, %r13d
@@ -51,35 +48,35 @@ LBB0_2:                                 ## =>This Inner Loop Header: Depth=1
 	movswl	%ax, %edx
 	movb	$7, %bl
 	btl	$12, %edx
-	jb	LBB0_10
-## %bb.3:                               ##   in Loop: Header=BB0_2 Depth=1
+	jb	LBB0_9
+## %bb.2:                               ##   in Loop: Header=BB0_1 Depth=1
 	movb	$6, %bl
 	btl	$11, %edx
-	jb	LBB0_10
-## %bb.4:                               ##   in Loop: Header=BB0_2 Depth=1
+	jb	LBB0_9
+## %bb.3:                               ##   in Loop: Header=BB0_1 Depth=1
 	movb	$5, %bl
 	btl	$10, %edx
-	jb	LBB0_10
-## %bb.5:                               ##   in Loop: Header=BB0_2 Depth=1
+	jb	LBB0_9
+## %bb.4:                               ##   in Loop: Header=BB0_1 Depth=1
 	movb	$4, %bl
 	btl	$9, %edx
-	jb	LBB0_10
-## %bb.6:                               ##   in Loop: Header=BB0_2 Depth=1
+	jb	LBB0_9
+## %bb.5:                               ##   in Loop: Header=BB0_1 Depth=1
 	movb	$3, %bl
 	btl	$8, %edx
-	jb	LBB0_10
-## %bb.7:                               ##   in Loop: Header=BB0_2 Depth=1
+	jb	LBB0_9
+## %bb.6:                               ##   in Loop: Header=BB0_1 Depth=1
 	testb	%dl, %dl
-	js	LBB0_8
-## %bb.9:                               ##   in Loop: Header=BB0_2 Depth=1
+	js	LBB0_7
+## %bb.8:                               ##   in Loop: Header=BB0_1 Depth=1
 	movl	%edx, %ebx
 	shrb	$6, %bl
 	andb	$1, %bl
-	jmp	LBB0_10
-LBB0_8:                                 ##   in Loop: Header=BB0_2 Depth=1
+	jmp	LBB0_9
+LBB0_7:                                 ##   in Loop: Header=BB0_1 Depth=1
 	movb	$2, %bl
 	.p2align	4, 0x90
-LBB0_10:                                ##   in Loop: Header=BB0_2 Depth=1
+LBB0_9:                                 ##   in Loop: Header=BB0_1 Depth=1
 	movl	%ebx, %ecx
 	incb	%cl
 	sarl	%cl, %edx
@@ -96,14 +93,14 @@ LBB0_10:                                ##   in Loop: Header=BB0_2 Depth=1
                                         ## kill: def %cl killed %cl killed %ecx
 	shll	%cl, %edx
 	testb	%sil, %sil
-	je	LBB0_12
-## %bb.11:                              ##   in Loop: Header=BB0_2 Depth=1
+	je	LBB0_11
+## %bb.10:                              ##   in Loop: Header=BB0_1 Depth=1
 	movl	$32, %esi
 	movl	%ebx, %ecx
 	shll	%cl, %esi
 	andl	$65534, %edx            ## imm = 0xFFFE
 	orl	%esi, %edx
-LBB0_12:                                ##   in Loop: Header=BB0_2 Depth=1
+LBB0_11:                                ##   in Loop: Header=BB0_1 Depth=1
 	movl	%edx, %esi
 	negl	%esi
 	testb	%al, %al
@@ -118,8 +115,8 @@ LBB0_12:                                ##   in Loop: Header=BB0_2 Depth=1
 	decl	%r12d
 	incl	%r14d
 	cmpl	$8, %r12d
-	jne	LBB0_2
-## %bb.13:
+	jne	LBB0_1
+## %bb.12:
 	leaq	L_.str(%rip), %rdi
 	movl	$58112, %esi            ## imm = 0xE300
 	movl	$125, %edx
@@ -131,7 +128,7 @@ LBB0_12:                                ##   in Loop: Header=BB0_2 Depth=1
 	movl	$1, %r14d
 	leaq	L_.str.1(%rip), %r15
 	.p2align	4, 0x90
-LBB0_14:                                ## =>This Inner Loop Header: Depth=1
+LBB0_13:                                ## =>This Inner Loop Header: Depth=1
 	movswl	%r13w, %eax
 	sarl	%eax
 	movl	$-2, %r13d
@@ -147,35 +144,35 @@ LBB0_14:                                ## =>This Inner Loop Header: Depth=1
 	movswl	%ax, %edx
 	movb	$7, %bl
 	btl	$12, %edx
-	jb	LBB0_22
-## %bb.15:                              ##   in Loop: Header=BB0_14 Depth=1
+	jb	LBB0_21
+## %bb.14:                              ##   in Loop: Header=BB0_13 Depth=1
 	movb	$6, %bl
 	btl	$11, %edx
-	jb	LBB0_22
-## %bb.16:                              ##   in Loop: Header=BB0_14 Depth=1
+	jb	LBB0_21
+## %bb.15:                              ##   in Loop: Header=BB0_13 Depth=1
 	movb	$5, %bl
 	btl	$10, %edx
-	jb	LBB0_22
-## %bb.17:                              ##   in Loop: Header=BB0_14 Depth=1
+	jb	LBB0_21
+## %bb.16:                              ##   in Loop: Header=BB0_13 Depth=1
 	movb	$4, %bl
 	btl	$9, %edx
-	jb	LBB0_22
-## %bb.18:                              ##   in Loop: Header=BB0_14 Depth=1
+	jb	LBB0_21
+## %bb.17:                              ##   in Loop: Header=BB0_13 Depth=1
 	movb	$3, %bl
 	btl	$8, %edx
-	jb	LBB0_22
-## %bb.19:                              ##   in Loop: Header=BB0_14 Depth=1
+	jb	LBB0_21
+## %bb.18:                              ##   in Loop: Header=BB0_13 Depth=1
 	testb	%dl, %dl
-	js	LBB0_20
-## %bb.21:                              ##   in Loop: Header=BB0_14 Depth=1
+	js	LBB0_19
+## %bb.20:                              ##   in Loop: Header=BB0_13 Depth=1
 	movl	%edx, %ebx
 	shrb	$6, %bl
 	andb	$1, %bl
-	jmp	LBB0_22
-LBB0_20:                                ##   in Loop: Header=BB0_14 Depth=1
+	jmp	LBB0_21
+LBB0_19:                                ##   in Loop: Header=BB0_13 Depth=1
 	movb	$2, %bl
 	.p2align	4, 0x90
-LBB0_22:                                ##   in Loop: Header=BB0_14 Depth=1
+LBB0_21:                                ##   in Loop: Header=BB0_13 Depth=1
 	movl	%ebx, %ecx
 	incb	%cl
 	sarl	%cl, %edx
@@ -192,14 +189,14 @@ LBB0_22:                                ##   in Loop: Header=BB0_14 Depth=1
                                         ## kill: def %cl killed %cl killed %ecx
 	shll	%cl, %edx
 	testb	%sil, %sil
-	je	LBB0_24
-## %bb.23:                              ##   in Loop: Header=BB0_14 Depth=1
+	je	LBB0_23
+## %bb.22:                              ##   in Loop: Header=BB0_13 Depth=1
 	movl	$32, %esi
 	movl	%ebx, %ecx
 	shll	%cl, %esi
 	andl	$65534, %edx            ## imm = 0xFFFE
 	orl	%esi, %edx
-LBB0_24:                                ##   in Loop: Header=BB0_14 Depth=1
+LBB0_23:                                ##   in Loop: Header=BB0_13 Depth=1
 	movl	%edx, %esi
 	negl	%esi
 	testb	%al, %al
@@ -214,8 +211,8 @@ LBB0_24:                                ##   in Loop: Header=BB0_14 Depth=1
 	decl	%r12d
 	incl	%r14d
 	cmpl	$8, %r12d
-	jne	LBB0_14
-## %bb.25:
+	jne	LBB0_13
+## %bb.24:
 	leaq	L_.str.3(%rip), %rdi
 	callq	_puts
 	leaq	L_.str(%rip), %rdi
@@ -224,6 +221,7 @@ LBB0_24:                                ##   in Loop: Header=BB0_14 Depth=1
 	xorl	%ecx, %ecx
 	xorl	%eax, %eax
 	callq	_printf
+	xorl	%eax, %eax
 	addq	$8, %rsp
 	popq	%rbx
 	popq	%r12
@@ -231,8 +229,6 @@ LBB0_24:                                ##   in Loop: Header=BB0_14 Depth=1
 	popq	%r14
 	popq	%r15
 	popq	%rbp
-LBB0_26:
-	xorl	%eax, %eax
 	retq
 	.cfi_endproc
                                         ## -- End function
