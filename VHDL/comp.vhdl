@@ -8,18 +8,21 @@ entity ulaw is
     sample    : in  std_logic_vector(15 downto 0);
     codeword  : out std_logic_vector(7 downto 0)
   );
-end comp;
+end ulaw;
 
 
-architecture data of ulaw is
+architecture algorithm of ulaw is
+  signal samp : std_logic_vector(15 downto 0) := "0000000000000000";
+
+
 begin
-  process
+  main : process (samp)
     variable sgn : std_logic_vector(7 downto 0) := b"00000000";
     variable chord : std_logic_vector(7 downto 0) := b"00000000";
     variable step : std_logic_vector(7 downto 0) := b"00000000";
     variable code : std_logic_vector(7 downto 0) := b"00000000";
   begin
-    if (to_integer(signed(sample)) < 0) then
+    if (to_integer(signed(samp)) < 0) then
       sgn := b"10000000";
     end if;
     if (to_integer(signed(sample and "0000100000000000")) /= 0) then
@@ -48,6 +51,5 @@ begin
     end if;
     codeword <= sgn or chord or step;
     report "Entity: sample = " & integer'image(to_integer(unsigned(code)));
-    wait;
   end process;
-end data;
+end algorithm;
