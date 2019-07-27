@@ -99,7 +99,6 @@ inline char compress_sample(char b1, char b2) {
     chord = 0x20;
     step = (sample >> 3) & 0xF;
   } else if (sample & (1 << 6)) {
-    printf("%s\n", "here");
     chord = 0x10;
     step = (sample >> 2) & 0xF;
   } else {

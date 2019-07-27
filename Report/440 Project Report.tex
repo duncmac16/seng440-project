@@ -27,6 +27,7 @@ Department of Engineering\\
 \end{titlepage}
 \newpage
 \tableofcontents
+\listoffigures
 \newpage
 \section{Introduction}
 \indent 
@@ -51,7 +52,30 @@ sgn(x)\frac{1+ln(A|x|)}{1 + ln A}\\
 \end{align}
 
 $\mu$-law, represented by equation 1 is the function that is to implemented in software, where $\mu$ is a parameter that can range from 0 (no compression) to 255 (maximum compression)[1]. To implement this in software, I am going to use a piecewise logarithmic approximation of this equation to compress a signal. Inversely, I am going to use exponentials to expand the compressed codec into something useful again. \\
+
 \section{Design}
+
+\subsection{Modelling}
+
+To create a basis of how the program was going to work, the first needed to be done was to model the program with a UML diagram. Using this would create a generic overview of how the program was going to flow and what components need to created in high-level terms. There was some deviation from this diagram in the first iteration of creating the code for the sake of readability, but the algorithm remained somewhat the same going to UML to C. 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=1]{mag_uml.png}
+	\caption{UML diagram of procedure that takes place when finding magnitude.}
+\end{figure}
+
+The first thing that is done after the initialization of the variables, is the magnitude of the sample is found. When this happens, the flip of the last bit is store and the magnitude is kept for the rest of the processing. \\
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=1]{step_uml.png}
+	\caption{UML diagram of procedure that takes place when finding the piecewise log of the sample.}
+\end{figure}
+
+After the magnitude is found, the piecewise log is found and stored and then the 4 bits after wards are stored as the step of the value. Out of the scope of the figure is all of these components together in a loop, storing the results in an area. This deviates from what was actually code for the arm controller, as there was only a test suite set up for a select few values.
+
+\subsection{Design Methodology}
 
 For a design methodology, I used a low cost version of test driven development. To produce some samples I made a 16-bit integer as a pseudo-sample and compressed it into a code word and expanded it again. In the end of the first iteration, some of the samples produced by the testing did not expand back in the same format, but it was expected since the samples produced were not in the format of a 14-bit quantized value. The rest of the values expanded in a similar fashion, only keeping the five or six most significant figures and dropping the rest. The samples produced were dispersed throughout a range of different chords and steps so that all aspects were tested. I used a for loop as seen in figure 1 that takes the initial sample and shifts it over one space, clearing the most significant bit and compresses and decompresses sample and displays the results. This was then repeat with a different step to ensure that the steps were correctly being compressed. As I mentions before this was a low cost testing method, so no actual testing software was used. Using a form of test driven development was very helpful though, as bugs that occurred were quickly seen and corrected.\\
 
@@ -82,5 +106,10 @@ To optimized the code, the parts of the code looked at were the parts that were 
 To optimize the compression further, all of the functions in the code to find the different sections of the code words were put into the same function. Doing this takes away the overhead of stack pushing and popping. After all of the function were brought together, the values that were previously returned using math were hard coded save on operations. The bit values were written in the way that they would be in the code word (ex. finding a chord of \texttt{0x4} would result in \texttt{0x40}). This helps save operations on shifting bits over when combining the values of step, chord and sign together. \\
 
 Another aspect of the code that was changed to reduce time is using the \texttt{register} key for the  \texttt{sample} variable. This being a highly modified value, it is important to remove the overhead of having to look in memory for this variable. The use of of \texttt{static inline} for the function makes the code in the function be placed in where the function call is, reducing the amount of stack used when running.\\
+
+\subsection{Hardware Design}
+
+
+
 \newpage
 \end{document}

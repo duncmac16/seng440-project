@@ -1,5 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{2}
 \contentsline {section}{\numberline {2}Background}{2}
 \contentsline {section}{\numberline {3}Design}{3}
-\contentsline {subsection}{\numberline {3.1}Original Design}{3}
-\contentsline {subsection}{\numberline {3.2}Optimizations}{4}
+\contentsline {subsection}{\numberline {3.1}Modelling}{3}
+\contentsline {subsection}{\numberline {3.2}Design Methodology}{4}
+\contentsline {subsection}{\numberline {3.3}Original Design}{5}
+\contentsline {subsection}{\numberline {3.4}Optimizations}{5}
+\contentsline {subsection}{\numberline {3.5}Hardware Design}{7}

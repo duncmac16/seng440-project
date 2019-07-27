@@ -12,17 +12,15 @@ end ulaw;
 
 
 architecture algorithm of ulaw is
-  signal samp : std_logic_vector(15 downto 0) := "0000000000000000";
-
 
 begin
-  main : process (samp)
+  process
     variable sgn : std_logic_vector(7 downto 0) := b"00000000";
     variable chord : std_logic_vector(7 downto 0) := b"00000000";
     variable step : std_logic_vector(7 downto 0) := b"00000000";
     variable code : std_logic_vector(7 downto 0) := b"00000000";
   begin
-    if (to_integer(signed(samp)) < 0) then
+    if (to_integer(signed(sample)) < 0) then
       sgn := b"10000000";
     end if;
     if (to_integer(signed(sample and "0000100000000000")) /= 0) then
@@ -51,5 +49,22 @@ begin
     end if;
     codeword <= sgn or chord or step;
     report "Entity: sample = " & integer'image(to_integer(unsigned(code)));
+    wait;
   end process;
+
+  -- process
+  --   variable sgn : std_logic_vector(7 downto 0);
+  --   variable step : std_logic_vector(7 downto 0);
+  --   variable chord : std_logic_vector(7 downto 0);
+  --   variable word : std_logic_vector(15 downto 0);
+  --
+  -- begin
+  --   step := std_logic_vector(resize(unsigned(sample and "0000000000001111"), 8));
+  --   chord := sample and "01110000";
+  --   chord := std_logic_vector(shift_right(unsigned(sample), 4));
+  --   if (signed(chord) /= 0) then
+  --     word := std_logic_vector(shift_right(unsigned(sample), to_integer(signed(chord))));
+  --   end if;
+  -- end process;
+
 end algorithm;
