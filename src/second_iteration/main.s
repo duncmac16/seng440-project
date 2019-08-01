@@ -1,430 +1,432 @@
-	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 10, 14
-	.globl	_main                   ## -- Begin function main
-	.p2align	4, 0x90
-_main:                                  ## @main
-	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	pushq	%r15
-	pushq	%r14
-	pushq	%r13
-	pushq	%r12
-	pushq	%rbx
-	pushq	%rax
-	.cfi_offset %rbx, -56
-	.cfi_offset %r12, -48
-	.cfi_offset %r13, -40
-	.cfi_offset %r14, -32
-	.cfi_offset %r15, -24
-	leaq	L_.str(%rip), %rdi
-	movl	$61184, %esi            ## imm = 0xEF00
-	movl	$113, %edx
-	movl	$61184, %ecx            ## imm = 0xEF00
-	xorl	%eax, %eax
-	callq	_printf
-	movl	$-4352, %r12d           ## imm = 0xEF00
-	movl	$16, %r13d
-	movl	$1, %r14d
-	.p2align	4, 0x90
-LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
-	movswl	%r12w, %eax
-	sarl	%eax
-	movl	$-2, %r12d
-	movl	%r13d, %ecx
-	roll	%cl, %r12d
-	andl	%eax, %r12d
-	movl	%r12d, %ebx
-	shrl	$8, %ebx
-	movl	%r12d, %eax
-	negw	%ax
-	cmovlw	%r12w, %ax
-	andl	$128, %ebx
-	movswl	%ax, %r15d
-	btl	$12, %r15d
-	jb	LBB0_2
-## %bb.3:                               ##   in Loop: Header=BB0_1 Depth=1
-	btl	$11, %r15d
-	jb	LBB0_4
-## %bb.5:                               ##   in Loop: Header=BB0_1 Depth=1
-	btl	$10, %r15d
-	jb	LBB0_6
-## %bb.7:                               ##   in Loop: Header=BB0_1 Depth=1
-	btl	$9, %r15d
-	jb	LBB0_8
-## %bb.9:                               ##   in Loop: Header=BB0_1 Depth=1
-	btl	$8, %r15d
-	jb	LBB0_10
-## %bb.11:                              ##   in Loop: Header=BB0_1 Depth=1
-	testb	%r15b, %r15b
-	js	LBB0_12
-## %bb.13:                              ##   in Loop: Header=BB0_1 Depth=1
-	testb	$64, %r15b
-	jne	LBB0_15
-## %bb.14:                              ##   in Loop: Header=BB0_1 Depth=1
-	xorl	%eax, %eax
-	movl	$1, %ecx
-	jmp	LBB0_16
-	.p2align	4, 0x90
-LBB0_2:                                 ##   in Loop: Header=BB0_1 Depth=1
-	movl	$112, %eax
-	movl	$8, %ecx
-	jmp	LBB0_16
-	.p2align	4, 0x90
-LBB0_4:                                 ##   in Loop: Header=BB0_1 Depth=1
-	movl	$96, %eax
-	movl	$7, %ecx
-	jmp	LBB0_16
-LBB0_6:                                 ##   in Loop: Header=BB0_1 Depth=1
-	movl	$80, %eax
-	movl	$6, %ecx
-	jmp	LBB0_16
-LBB0_8:                                 ##   in Loop: Header=BB0_1 Depth=1
-	movl	$64, %eax
-	movl	$5, %ecx
-	jmp	LBB0_16
-LBB0_10:                                ##   in Loop: Header=BB0_1 Depth=1
-	movl	$48, %eax
-	movl	$4, %ecx
-	jmp	LBB0_16
-LBB0_12:                                ##   in Loop: Header=BB0_1 Depth=1
-	movl	$32, %eax
-	movl	$3, %ecx
-	jmp	LBB0_16
-LBB0_15:                                ##   in Loop: Header=BB0_1 Depth=1
-	leaq	L_.str.4(%rip), %rdi
-	callq	_puts
-	movl	$16, %eax
-	movl	$2, %ecx
-	.p2align	4, 0x90
-LBB0_16:                                ##   in Loop: Header=BB0_1 Depth=1
-                                        ## kill: def %cl killed %cl killed %ecx
-	shrl	%cl, %r15d
-	orl	%ebx, %eax
-	andl	$15, %r15d
-	orl	%r15d, %eax
-	movl	%eax, %ebx
-	xorb	$-128, %bl
-	shrb	$4, %al
-	andb	$7, %al
-	movzbl	%al, %edx
-	leal	1(%rdx), %ecx
-                                        ## kill: def %cl killed %cl killed %ecx
-	shll	%cl, %r15d
-	testb	%dl, %dl
-	je	LBB0_18
-## %bb.17:                              ##   in Loop: Header=BB0_1 Depth=1
-	movl	$32, %edx
-	movl	%eax, %ecx
-	shll	%cl, %edx
-	andl	$65534, %r15d           ## imm = 0xFFFE
-	orl	%edx, %r15d
-LBB0_18:                                ##   in Loop: Header=BB0_1 Depth=1
-	movl	%r15d, %eax
-	negl	%eax
-	testb	%bl, %bl
-	cmovlel	%r15d, %eax
-	movzwl	%r12w, %edx
-	movzbl	%bl, %ecx
-	movzwl	%ax, %r8d
-	xorl	%eax, %eax
-	leaq	L_.str.1(%rip), %rdi
-	movl	%r14d, %esi
-	callq	_printf
-	decl	%r13d
-	incl	%r14d
-	cmpl	$8, %r13d
-	jne	LBB0_1
-## %bb.19:
-	leaq	L_.str(%rip), %rdi
-	movl	$58112, %esi            ## imm = 0xE300
-	movl	$125, %edx
-	movl	$58112, %ecx            ## imm = 0xE300
-	xorl	%eax, %eax
-	callq	_printf
-	movl	$-7424, %r12d           ## imm = 0xE300
-	movl	$16, %r13d
-	movl	$1, %r14d
-	.p2align	4, 0x90
-LBB0_20:                                ## =>This Inner Loop Header: Depth=1
-	movswl	%r12w, %eax
-	sarl	%eax
-	movl	$-2, %r12d
-	movl	%r13d, %ecx
-	roll	%cl, %r12d
-	andl	%eax, %r12d
-	movl	%r12d, %ebx
-	shrl	$8, %ebx
-	movl	%r12d, %eax
-	negw	%ax
-	cmovlw	%r12w, %ax
-	andl	$128, %ebx
-	movswl	%ax, %r15d
-	btl	$12, %r15d
-	jb	LBB0_21
-## %bb.22:                              ##   in Loop: Header=BB0_20 Depth=1
-	btl	$11, %r15d
-	jb	LBB0_23
-## %bb.24:                              ##   in Loop: Header=BB0_20 Depth=1
-	btl	$10, %r15d
-	jb	LBB0_25
-## %bb.26:                              ##   in Loop: Header=BB0_20 Depth=1
-	btl	$9, %r15d
-	jb	LBB0_27
-## %bb.28:                              ##   in Loop: Header=BB0_20 Depth=1
-	btl	$8, %r15d
-	jb	LBB0_29
-## %bb.30:                              ##   in Loop: Header=BB0_20 Depth=1
-	testb	%r15b, %r15b
-	js	LBB0_31
-## %bb.32:                              ##   in Loop: Header=BB0_20 Depth=1
-	testb	$64, %r15b
-	jne	LBB0_34
-## %bb.33:                              ##   in Loop: Header=BB0_20 Depth=1
-	xorl	%eax, %eax
-	movl	$1, %ecx
-	jmp	LBB0_35
-	.p2align	4, 0x90
-LBB0_21:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	$112, %eax
-	movl	$8, %ecx
-	jmp	LBB0_35
-	.p2align	4, 0x90
-LBB0_23:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	$96, %eax
-	movl	$7, %ecx
-	jmp	LBB0_35
-LBB0_25:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	$80, %eax
-	movl	$6, %ecx
-	jmp	LBB0_35
-LBB0_27:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	$64, %eax
-	movl	$5, %ecx
-	jmp	LBB0_35
-LBB0_29:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	$48, %eax
-	movl	$4, %ecx
-	jmp	LBB0_35
-LBB0_31:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	$32, %eax
-	movl	$3, %ecx
-	jmp	LBB0_35
-LBB0_34:                                ##   in Loop: Header=BB0_20 Depth=1
-	leaq	L_.str.4(%rip), %rdi
-	callq	_puts
-	movl	$16, %eax
-	movl	$2, %ecx
-	.p2align	4, 0x90
-LBB0_35:                                ##   in Loop: Header=BB0_20 Depth=1
-                                        ## kill: def %cl killed %cl killed %ecx
-	shrl	%cl, %r15d
-	orl	%ebx, %eax
-	andl	$15, %r15d
-	orl	%r15d, %eax
-	movl	%eax, %ebx
-	xorb	$-128, %bl
-	shrb	$4, %al
-	andb	$7, %al
-	movzbl	%al, %edx
-	leal	1(%rdx), %ecx
-                                        ## kill: def %cl killed %cl killed %ecx
-	shll	%cl, %r15d
-	testb	%dl, %dl
-	je	LBB0_37
-## %bb.36:                              ##   in Loop: Header=BB0_20 Depth=1
-	movl	$32, %edx
-	movl	%eax, %ecx
-	shll	%cl, %edx
-	andl	$65534, %r15d           ## imm = 0xFFFE
-	orl	%edx, %r15d
-LBB0_37:                                ##   in Loop: Header=BB0_20 Depth=1
-	movl	%r15d, %eax
-	negl	%eax
-	testb	%bl, %bl
-	cmovlel	%r15d, %eax
-	movzwl	%r12w, %edx
-	movzbl	%bl, %ecx
-	movzwl	%ax, %r8d
-	xorl	%eax, %eax
-	leaq	L_.str.1(%rip), %rdi
-	movl	%r14d, %esi
-	callq	_printf
-	decl	%r13d
-	incl	%r14d
-	cmpl	$8, %r13d
-	jne	LBB0_20
-## %bb.38:
-	leaq	L_.str.3(%rip), %rdi
-	callq	_puts
-	leaq	L_.str(%rip), %rdi
-	xorl	%esi, %esi
-	movl	$128, %edx
-	xorl	%ecx, %ecx
-	xorl	%eax, %eax
-	callq	_printf
-	xorl	%eax, %eax
-	addq	$8, %rsp
-	popq	%rbx
-	popq	%r12
-	popq	%r13
-	popq	%r14
-	popq	%r15
-	popq	%rbp
-	retq
-	.cfi_endproc
-                                        ## -- End function
-	.globl	_compress_sample        ## -- Begin function compress_sample
-	.p2align	4, 0x90
-_compress_sample:                       ## @compress_sample
-	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	pushq	%r14
-	pushq	%rbx
-	.cfi_offset %rbx, -32
-	.cfi_offset %r14, -24
-	movl	%edi, %r14d
-	shll	$8, %edi
-	movzbl	%sil, %eax
-	orl	%edi, %eax
-	movl	%eax, %ecx
-	negw	%cx
-	cmovlw	%ax, %cx
-	notl	%r14d
-	andl	$128, %r14d
-	movswl	%cx, %ebx
-	btl	$12, %ebx
-	jb	LBB1_1
-## %bb.2:
-	btl	$11, %ebx
-	jb	LBB1_3
-## %bb.4:
-	btl	$10, %ebx
-	jb	LBB1_5
-## %bb.6:
-	btl	$9, %ebx
-	jb	LBB1_7
-## %bb.8:
-	btl	$8, %ebx
-	jb	LBB1_9
-## %bb.10:
-	testb	%bl, %bl
-	js	LBB1_11
-## %bb.12:
-	testb	$64, %bl
-	jne	LBB1_14
-## %bb.13:
-	xorl	%eax, %eax
-	movl	$1, %ecx
-	jmp	LBB1_15
-LBB1_1:
-	movl	$112, %eax
-	movl	$8, %ecx
-	jmp	LBB1_15
-LBB1_3:
-	movl	$96, %eax
-	movl	$7, %ecx
-	jmp	LBB1_15
-LBB1_5:
-	movl	$80, %eax
-	movl	$6, %ecx
-	jmp	LBB1_15
-LBB1_7:
-	movl	$64, %eax
-	movl	$5, %ecx
-	jmp	LBB1_15
-LBB1_9:
-	movl	$48, %eax
-	movl	$4, %ecx
-	jmp	LBB1_15
-LBB1_11:
-	movl	$32, %eax
-	movl	$3, %ecx
-	jmp	LBB1_15
-LBB1_14:
-	leaq	L_.str.4(%rip), %rdi
-	callq	_puts
-	movl	$16, %eax
-	movl	$2, %ecx
-LBB1_15:
-                                        ## kill: def %cl killed %cl killed %ecx
-	shrl	%cl, %ebx
-	orl	%r14d, %eax
-	andl	$15, %ebx
-	orl	%eax, %ebx
-	movsbl	%bl, %eax
-	popq	%rbx
-	popq	%r14
-	popq	%rbp
-	retq
-	.cfi_endproc
-                                        ## -- End function
-	.globl	_expand_word            ## -- Begin function expand_word
-	.p2align	4, 0x90
-_expand_word:                           ## @expand_word
-	.cfi_startproc
-## %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movl	%edi, %eax
-	shrb	$4, %al
-	andb	$7, %al
-	movl	%edi, %edx
-	andl	$15, %edx
-	movzbl	%al, %esi
-	leal	1(%rsi), %ecx
-                                        ## kill: def %cl killed %cl killed %ecx
-	shll	%cl, %edx
-	testb	%sil, %sil
-	je	LBB2_2
-## %bb.1:
-	movl	$32, %esi
-	movl	%eax, %ecx
-	shll	%cl, %esi
-	andl	$65534, %edx            ## imm = 0xFFFE
-	orl	%esi, %edx
-LBB2_2:
-	movl	%edx, %eax
-	negl	%eax
-	testb	%dil, %dil
-	cmovlew	%dx, %ax
-	cwtl
-	popq	%rbp
-	retq
-	.cfi_endproc
-                                        ## -- End function
-	.section	__DATA,__data
-	.globl	_test                   ## @test
-	.p2align	2
-_test:
-	.long	1                       ## 0x1
-
-	.globl	_head_test              ## @head_test
-.zerofill __DATA,__common,_head_test,4,2
-	.section	__TEXT,__cstring,cstring_literals
-L_.str:                                 ## @.str
-	.asciz	"Sample: %x\nCodeword: %x \nExpanded: %x\n\n"
-
-L_.str.1:                               ## @.str.1
-	.asciz	"%d Shift\nSample: %x\nCodeword: %x \nExpanded: %x\n\n"
-
-L_.str.3:                               ## @.str.3
-	.asciz	"0x0000 Test"
-
-L_.str.4:                               ## @.str.4
-	.asciz	"here"
-
-
-.subsections_via_symbols
+	.arch armv4t
+	.fpu softvfp
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 2
+	.eabi_attribute 30, 2
+	.eabi_attribute 18, 4
+	.file	"main.c"
+	.text
+	.align	2
+	.global	expand_word
+	.type	expand_word, %function
+expand_word:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+	@ link register save eliminated.
+	mov	r3, r0, lsr #4
+	and	r1, r3, #7
+	add	r3, r1, #1
+	and	r2, r0, #15
+	mov	r2, r2, asl r3
+	cmp	r1, #0
+	mov	r2, r2, asl #16
+	movne	r3, #1
+	mov	ip, r0
+	mov	r0, r2, lsr #16
+	addne	r2, r1, #5
+	orrne	r3, r0, r3, asl r2
+	movne	r3, r3, asl #16
+	movne	r0, r3, lsr #16
+	cmp	ip, #0
+	rsbne	r3, r0, #0
+	movne	r3, r3, asl #16
+	movne	r0, r3, lsr #16
+	mov	r0, r0, asl #16
+	mov	r0, r0, asr #16
+	bx	lr
+	.size	expand_word, .-expand_word
+	.align	2
+	.global	compress_sample
+	.type	compress_sample, %function
+compress_sample:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+	@ link register save eliminated.
+	orr	r3, r1, r0, asl #8
+	movs	r1, r3, asl #16
+	rsbmi	r3, r3, #0
+	movmi	r1, r3, asl #16
+	mov	r2, r1, lsr #16
+	movpl	ip, #128
+	movmi	ip, #0
+	tst	r2, #4096
+	movne	r3, r1, asr #24
+	andne	r3, r3, #15
+	movne	r0, #112
+	bne	.L9
+	tst	r2, #2048
+	movne	r3, r1, asr #23
+	andne	r3, r3, #15
+	movne	r0, #96
+	bne	.L9
+	tst	r2, #1024
+	movne	r3, r1, asr #22
+	andne	r3, r3, #15
+	movne	r0, #80
+	bne	.L9
+	tst	r2, #512
+	movne	r3, r1, asr #21
+	andne	r3, r3, #15
+	movne	r0, #64
+	bne	.L9
+	tst	r2, #256
+	movne	r3, r1, asr #20
+	andne	r3, r3, #15
+	movne	r0, #48
+	bne	.L9
+	tst	r2, #128
+	movne	r3, r1, asr #19
+	andne	r3, r3, #15
+	movne	r0, #32
+	bne	.L9
+	ands	r0, r2, #64
+	movne	r3, r1, asr #18
+	moveq	r3, r1, asr #17
+	andne	r3, r3, #15
+	movne	r0, #16
+	andeq	r3, r3, #15
+.L9:
+	orr	r0, r0, r3
+	orr	r0, ip, r0
+	bx	lr
+	.size	compress_sample, .-compress_sample
+	.global	__aeabi_i2d
+	.global	__aeabi_dadd
+	.global	__aeabi_ddiv
+	.align	2
+	.global	main
+	.type	main, %function
+main:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+	stmfd	sp!, {r4, r5, r6, r7, r8, lr}
+	ldr	r3, .L54
+	ldr	r1, [r3, #0]
+	cmp	r1, #0
+	sub	sp, sp, #8
+	beq	.L19
+	mov	r6, #0
+.L20:
+	bl	clock
+	mov	r4, r0
+	bl	clock
+	rsb	r0, r4, r0
+	bl	__aeabi_i2d
+	mov	r5, r1
+	mov	r2, r0
+	mov	r3, r1
+	mov	r4, r0
+	ldr	r0, .L54+4
+	bl	printf
+	mov	r0, r7
+	mov	r1, r8
+	mov	r2, r4
+	mov	r3, r5
+	bl	__aeabi_dadd
+	add	r6, r6, #1
+	cmp	r6, #20
+	mov	r7, r0
+	mov	r8, r1
+	bne	.L20
+	mov	r3, #1073741824
+	mov	r2, #0
+	add	r3, r3, #3407872
+	bl	__aeabi_ddiv
+	mov	r3, #1090519040
+	add	r3, r3, #3047424
+	mov	r2, #0
+	add	r3, r3, #1152
+	bl	__aeabi_ddiv
+	mov	r2, r0
+	mov	r3, r1
+	ldr	r0, .L54+8
+	bl	printf
+	mov	r6, #0
+	mov	r7, #0
+	mov	r8, #0
+.L21:
+	bl	clock
+	mov	r4, r0
+	bl	clock
+	rsb	r5, r4, r0
+	mov	r1, r5
+	ldr	r0, .L54+12
+	bl	printf
+	mov	r0, r5
+	bl	__aeabi_i2d
+	mov	r2, r0
+	mov	r3, r1
+	mov	r0, r6
+	mov	r1, r7
+	bl	__aeabi_dadd
+	add	r8, r8, #1
+	cmp	r8, #20
+	mov	r6, r0
+	mov	r7, r1
+	bne	.L21
+	mov	r3, #1073741824
+	mov	r2, #0
+	add	r3, r3, #3407872
+	bl	__aeabi_ddiv
+	mov	r3, #1090519040
+	add	r3, r3, #3047424
+	mov	r2, #0
+	add	r3, r3, #1152
+	bl	__aeabi_ddiv
+	mov	r2, r0
+	mov	r3, r1
+	ldr	r0, .L54+16
+	bl	printf
+.L22:
+	mov	r0, #0
+	add	sp, sp, #8
+	ldmfd	sp!, {r4, r5, r6, r7, r8, lr}
+	bx	lr
+.L19:
+	mov	r4, r1
+	mov	r5, #-285212672
+	mov	r6, #1
+.L35:
+	rsb	r3, r4, #16
+	mov	r3, r6, asl r3
+	mvn	r3, r3
+	and	r3, r3, r5, asr #17
+	mov	r3, r3, asl #16
+	mov	r3, r3, lsr #16
+	and	r1, r3, #255
+	and	r2, r3, #65280
+	orr	r2, r2, r1
+	movs	r1, r2, asl #16
+	mov	r5, r3, asl #16
+	rsbmi	r3, r2, #0
+	movmi	r1, r3, asl #16
+	mov	r3, r1, lsr #16
+	movpl	ip, #128
+	movmi	ip, #0
+	tst	r3, #4096
+	movne	r3, r1, asr #24
+	andne	r3, r3, #15
+	movne	r2, #112
+	bne	.L26
+	tst	r3, #2048
+	movne	r3, r1, asr #23
+	andne	r3, r3, #15
+	movne	r2, #96
+	bne	.L26
+	tst	r3, #1024
+	movne	r3, r1, asr #22
+	andne	r3, r3, #15
+	movne	r2, #80
+	bne	.L26
+	tst	r3, #512
+	movne	r3, r1, asr #21
+	andne	r3, r3, #15
+	movne	r2, #64
+	bne	.L26
+	tst	r3, #256
+	movne	r3, r1, asr #20
+	andne	r3, r3, #15
+	movne	r2, #48
+	bne	.L26
+	tst	r3, #128
+	movne	r3, r1, asr #19
+	andne	r3, r3, #15
+	movne	r2, #32
+	bne	.L26
+	ands	r0, r3, #64
+	movne	r3, r1, asr #18
+	moveq	r3, r1, asr #17
+	andne	r3, r3, #15
+	movne	r2, #16
+	andeq	r3, r3, #15
+	moveq	r2, r0
+.L26:
+	orr	r3, r2, r3
+	orr	r3, ip, r3
+	and	r0, r3, #255
+	mov	r2, r0, lsr #4
+	and	r1, r2, #7
+	add	r2, r1, #1
+	and	r3, r3, #15
+	mov	r3, r3, asl r2
+	cmp	r1, #0
+	mov	r3, r3, asl #16
+	mov	ip, r3, lsr #16
+	addne	r3, r1, #5
+	orrne	r3, ip, r6, asl r3
+	movne	r3, r3, asl #16
+	movne	ip, r3, lsr #16
+	cmp	r0, #0
+	rsbne	r3, ip, #0
+	movne	r3, r3, asl #16
+	add	r4, r4, #1
+	movne	ip, r3, lsr #16
+	mov	r1, r4
+	mov	r3, r0
+	mov	r2, r5, lsr #16
+	ldr	r0, .L54+20
+	str	ip, [sp, #0]
+	bl	printf
+	cmp	r4, #8
+	bne	.L35
+	mov	r1, #58112
+	ldr	r0, .L54+24
+	mov	r2, #125
+	mov	r3, r1
+	bl	printf
+	sub	r4, r4, #8
+	mov	r5, #-486539264
+	mov	r6, #1
+.L48:
+	rsb	r3, r4, #16
+	mov	r3, r6, asl r3
+	mvn	r3, r3
+	and	r3, r3, r5, asr #17
+	mov	r3, r3, asl #16
+	mov	r3, r3, lsr #16
+	and	r1, r3, #255
+	and	r2, r3, #65280
+	orr	r2, r2, r1
+	movs	r1, r2, asl #16
+	mov	r5, r3, asl #16
+	rsbmi	r3, r2, #0
+	movmi	r1, r3, asl #16
+	mov	r3, r1, lsr #16
+	movpl	ip, #128
+	movmi	ip, #0
+	tst	r3, #4096
+	movne	r3, r1, asr #24
+	andne	r3, r3, #15
+	movne	r2, #112
+	bne	.L39
+	tst	r3, #2048
+	movne	r3, r1, asr #23
+	andne	r3, r3, #15
+	movne	r2, #96
+	bne	.L39
+	tst	r3, #1024
+	movne	r3, r1, asr #22
+	andne	r3, r3, #15
+	movne	r2, #80
+	bne	.L39
+	tst	r3, #512
+	movne	r3, r1, asr #21
+	andne	r3, r3, #15
+	movne	r2, #64
+	bne	.L39
+	tst	r3, #256
+	movne	r3, r1, asr #20
+	andne	r3, r3, #15
+	movne	r2, #48
+	bne	.L39
+	tst	r3, #128
+	movne	r3, r1, asr #19
+	andne	r3, r3, #15
+	movne	r2, #32
+	bne	.L39
+	ands	r0, r3, #64
+	movne	r3, r1, asr #18
+	moveq	r3, r1, asr #17
+	andne	r3, r3, #15
+	movne	r2, #16
+	andeq	r3, r3, #15
+	moveq	r2, r0
+.L39:
+	orr	r3, r2, r3
+	orr	r3, ip, r3
+	and	r0, r3, #255
+	mov	r2, r0, lsr #4
+	and	r1, r2, #7
+	add	r2, r1, #1
+	and	r3, r3, #15
+	mov	r3, r3, asl r2
+	cmp	r1, #0
+	mov	r3, r3, asl #16
+	mov	ip, r3, lsr #16
+	addne	r3, r1, #5
+	orrne	r3, ip, r6, asl r3
+	movne	r3, r3, asl #16
+	movne	ip, r3, lsr #16
+	cmp	r0, #0
+	rsbne	r3, ip, #0
+	movne	r3, r3, asl #16
+	add	r4, r4, #1
+	movne	ip, r3, lsr #16
+	mov	r1, r4
+	mov	r3, r0
+	mov	r2, r5, lsr #16
+	ldr	r0, .L54+20
+	str	ip, [sp, #0]
+	bl	printf
+	cmp	r4, #8
+	bne	.L48
+	ldr	r0, .L54+28
+	bl	puts
+	mov	r1, #0
+	mov	r2, #128
+	mov	r3, r1
+	ldr	r0, .L54+24
+	bl	printf
+	b	.L22
+.L55:
+	.align	2
+.L54:
+	.word	.LANCHOR0
+	.word	.LC0
+	.word	.LC1
+	.word	.LC2
+	.word	.LC3
+	.word	.LC4
+	.word	.LC5
+	.word	.LC6
+	.size	main, .-main
+	.global	test
+	.global	time_test
+	.global	head_test
+	.data
+	.align	2
+.LANCHOR0 = . + 0
+	.type	time_test, %object
+	.size	time_test, 4
+time_test:
+	.word	1
+	.section	.rodata.str1.4,"aMS",%progbits,1
+	.align	2
+.LC0:
+	.ascii	"%f\012\000"
+.LC1:
+	.ascii	"Average time to compress: %f\012\000"
+	.space	2
+.LC2:
+	.ascii	"%lu\012\000"
+	.space	3
+.LC3:
+	.ascii	"Average time to expand: %f\012\000"
+.LC4:
+	.ascii	"%d Shift\012Sample: %x\012Codeword: %x \012Expanded"
+	.ascii	": %x\012\012\000"
+	.space	3
+.LC5:
+	.ascii	"Sample: %x\012Codeword: %x \012Expanded: %x\012\012"
+	.ascii	"\000"
+.LC6:
+	.ascii	"0x0000 Test\000"
+	.bss
+	.align	2
+	.type	test, %object
+	.size	test, 4
+test:
+	.space	4
+	.type	head_test, %object
+	.size	head_test, 4
+head_test:
+	.space	4
+	.ident	"GCC: (Sourcery G++ Lite 2008q3-72) 4.3.2"
+	.section	.note.GNU-stack,"",%progbits
