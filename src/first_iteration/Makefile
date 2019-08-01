@@ -1,3 +1,3 @@
 
 comp: main1.c
-	gcc $^ -o $@
+	gcc $^ -o $@ 

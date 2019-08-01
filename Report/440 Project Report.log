@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  30 JUL 2019 16:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  31 JUL 2019 22:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -289,7 +289,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
-<./figures/mag_uml.png, id=16, 252.945pt x 129.48375pt>
+<./figures/mag_uml.png, id=17, 252.945pt x 129.48375pt>
 File: ./figures/mag_uml.png Graphic file (type png)
 
 <use ./figures/mag_uml.png>
@@ -301,7 +301,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--69
  []
 
 [3 <./figures/mag_uml.png>]
-<./figures/step_uml.png, id=27, 380.42125pt x 180.675pt>
+<./figures/step_uml.png, id=28, 380.42125pt x 180.675pt>
 File: ./figures/step_uml.png Graphic file (type png)
 
 <use ./figures/step_uml.png>
@@ -313,7 +313,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 80--81
  []
 
 [4 <./figures/step_uml.png>]
-<./figures/testingLoop.png, id=32, 808.01875pt x 218.8175pt>
+<./figures/testingLoop.png, id=33, 808.01875pt x 218.8175pt>
 File: ./figures/testingLoop.png Graphic file (type png)
 
 <use ./figures/testingLoop.png>
@@ -329,7 +329,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
-<./figures/get_chord_for_loop.png, id=33, 326.21875pt x 232.87pt>
+<./figures/get_chord_for_loop.png, id=34, 326.21875pt x 232.87pt>
 File: ./figures/get_chord_for_loop.png Graphic file (type png)
 
 <use ./figures/get_chord_for_loop.png>
@@ -388,41 +388,73 @@ File: ./figures/concur.png Graphic file (type png)
 Package pdftex.def Info: ./figures/concur.png used on input line 133.
 (pdftex.def)             Requested size: 227.62204pt x 63.91655pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+
+ []
+
 <./figures/ulaw_entity.png, id=50, 342.27875pt x 121.45375pt>
 File: ./figures/ulaw_entity.png Graphic file (type png)
 
 <use ./figures/ulaw_entity.png>
-Package pdftex.def Info: ./figures/ulaw_entity.png used on input line 142.
+Package pdftex.def Info: ./figures/ulaw_entity.png used on input line 144.
 (pdftex.def)             Requested size: 227.62204pt x 80.77127pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8 <./figures/concur.png>] [9 <./figures/ulaw_entity.png>]
-(./440 Project Report.aux) ) 
+[8 <./figures/concur.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
+
+ []
+
+[9 <./figures/ulaw_entity.png>]
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ˜ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no ™ in font cmr12!
+
+Overfull \hbox (10.65724pt too wide) in paragraph at lines 159--163
+\OT1/cmr/m/n/12 [1] M.Sima, ``SENG 440 Les-son 101 Project Au-dio Com-pres-sion
+" $[$Online Document$]$ 
+ []
+
+
+Overfull \hbox (27.53427pt too wide) in paragraph at lines 159--163
+\OT1/cmr/m/n/12 http:www.ece.uvic.ca msimaTEACHINGCOURSESSENG[]440 PRO-TECTEDSL
+IDES 
+ []
+
+[10] (./440 Project Report.aux) ) 
 Here is how much of TeX's memory you used:
- 2631 strings out of 492995
- 36815 string characters out of 6132704
+ 2632 strings out of 492995
+ 36833 string characters out of 6132704
  106633 words of memory out of 5000000
- 6150 multiletter control sequences out of 15000+600000
+ 6151 multiletter control sequences out of 15000+600000
  9036 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,14n,32p,1215b,226s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmtt12.pfb>
-Output written on "440 Project Report.pdf" (10 pages, 276104 bytes).
+</usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt12.pfb>
+Output written on "440 Project Report.pdf" (11 pages, 279139 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

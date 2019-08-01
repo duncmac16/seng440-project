@@ -33,15 +33,15 @@ Department of Engineering\\
 \indent 
 Recording audio and storing it digitally, in its fullest form is a very costly process; the same goes for transmitting it. For that reason, audio compression came to be. There are two type of audio compression methods, lossless and lossy, this report will be going over the latter, specifically $\mu$-law and $A$-law. Even though $\mu$-law does loss some data in compression, it's usage is still justified in telecommunication as it makes data transfer a lot faster with little noticeable to the human ear[1].\\
 
-$\mu$-law takes in a 14-bit sample (14 of which are used) of the recorded signal and creates a logarithmic approximation of the signal recording the position of the most significant bits and the step of the preceding bits. This project in particular is an implementation of $\mu$-law used on to compress a audio file and uses the inverse to expand it back to a usable file. After the initial implementation was create, multiple different optimization techniques were preformed to the algorithm to take the highest traffic parts and reduce the instructions needed to complete them. After the software optimizations were completed, hypothetical hardware assisted were added to the algorithm to increase the speed of the algorithm even further.\\
+$\mu$-law takes in a 14-bit sample of the recorded signal and creates a logarithmic approximation of the signal recording the position of the most significant bits and the step of the preceding bits. This project in particular is an implementation of $\mu$-law used on to compress a audio file and uses the inverse to expand it back to a usable file. After the initial implementation was create, multiple different optimization techniques were preformed to the algorithm to take the highest traffic parts and reduce the instructions needed to complete them. After the software optimizations were completed, hypothetical hardware assisted were added to the algorithm to increase the speed of the algorithm even further.\\
 
-The resulting algorithm would be the base to a highly optimized embedded system could be further implemented with hardware to be used in a production setting. The following report highlights the background knowledge the algorithm is based on, the optimization techniques used in the software and performance analysis on all stages of the design.\\
+The resulting algorithm would be the base to a highly optimized embedded system could be further implemented with hardware to be used in a production setting. The following report highlights the background knowledge the algorithm it is based on, the optimization techniques used in the software and performance analysis on all stages of the design.\\
  
 \section{Background}
 
 The basis of why the data lost in compression is justifiable is the characteristics of human speech[1]. Most of the things people say vocally are of a much higher amplitude than things such as background noise or sounds of friction of things around the recording device[1]. This is why compressing large signals of vocal sounds is affordable, since the lower amplitude signals of non-vocal sounds aren't really relevant to the transfer of human voice. \\
 
-The way that wave files are recorded is in uniformly spaced quantized values of a signal, with lower levels of noise recorded with fewer bits and larger levels of noise recorded with more bits. This is referred to as uniform pulse code modulation[1]. The idea behind such codec as $\mu$-law and $A$-law is to take a logarithmic representation of the uniformly spaced signals so that an 8-bit code can represent the potentially larger signal. \\
+The way that \texttt{.wav} files are recorded is in uniformly spaced quantized values of a signal, with lower levels of noise recorded with fewer bits and larger levels of noise recorded with more bits. This is referred to as uniform pulse code modulation[1]. The idea behind such codec as $\mu$-law and $A$-law is to take a logarithmic representation of the uniformly spaced signals so that an 8-bit code can represent the potentially larger signal. \\
 
 \begin{align}
 y = sgn(x)\frac{ln(1+\mu|x|)}{ln(1+ \mu)}\\
@@ -51,13 +51,13 @@ sgn(x)\frac{1+ln(A|x|)}{1 + ln A}\\
 \end{cases}
 \end{align}
 
-$\mu$-law, represented by equation 1 is the function that is to implemented in software, where $\mu$ is a parameter that can range from 0 (no compression) to 255 (maximum compression)[1]. To implement this in software, I am going to use a piecewise logarithmic approximation of this equation to compress a signal. Inversely, I am going to use exponentials to expand the compressed codec into something useful again. \\
+$\mu$-law, represented by equation 1 is the function that is to be implemented in software, where $\mu$ is a parameter that can range from 0 (no compression) to 255 (maximum compression)[1]. To implement this in software, the software is going to use a piecewise logarithmic approximation of this equation to compress a signal. Inversely, the software is going to use exponentials to expand the compressed codec into something useful again. \\
 
 \section{Design}
 
 \subsection{Modelling}
 
-To create a basis of how the program was going to work, the first needed to be done was to model the program with a UML diagram. Using this would create a generic overview of how the program was going to flow and what components need to created in high-level terms. There was some deviation from this diagram in the first iteration of creating the code for the sake of readability, but the algorithm remained somewhat the same going to UML to C. 
+To create a basis of how the program was going to work, the first needed to be done was to model the program with a UML diagram. Using this would create a generic overview of how the program was going to flow and what components need to created in high-level terms. There was some deviation from this diagram in the first iteration of creating the code for the sake of readability, but the algorithm remained somewhat the same going from UML to C. 
 
 \begin{figure}[!h]
 	\centering
@@ -105,7 +105,7 @@ To optimized the code, the parts of the code looked at were the parts that were 
 
 To optimize the compression further, all of the functions in the code to find the different sections of the code words were put into the same function. Doing this takes away the overhead of stack pushing and popping. After all of the function were brought together, the values that were previously returned using math were hard coded save on operations. The bit values were written in the way that they would be in the code word (ex. finding a chord of \texttt{0x4} would result in \texttt{0x40}). This helps save operations on shifting bits over when combining the values of step, chord and sign together. \\
 
-Another aspect of the code that was changed to reduce time is using the \texttt{register} key for the  \texttt{sample} variable. This being a highly modified value, it is important to remove the overhead of having to look in memory for this variable. The use of of \texttt{static inline} for the function makes the code in the function be placed in where the function call is, reducing the amount of stack used when running.\\
+Another aspect of the code that was changed to reduce time is using the \texttt{register} key for the  \texttt{sample} variable. This being a highly modified value, it is important to remove the overhead of having to look in memory for this variable.\\
 
 \subsection{Hardware Design}
 
@@ -144,5 +144,24 @@ The mode component was added to the entity, but not actually implemented, since 
         {ulaw_entity.png}
         \caption{\label{fig:ulaw_entity} Concurrency in action in during simulation.}
 \end{figure}
+
+\section{Performance}
+
+To determine the performance of the system, I decided to time the functions in action. In this evaluation, my main machine was used for to give an estimation of how the performance would increase in an embedded environment. To reduce the affect of overhead on the timing of the function, it was ran two-hundred-million times to get the average time it takes to run the function. For the first 
+
+\section{Conclusion}
+
+Sending audio signals in there fullest uniformly pulsated state is very costly in the amount of data needed to be sent.The characteristics of the human voice and auditory system as such that people do not need to hear lower amplitude sound. This gives reason to use such codecs as $A$-law and $\mu$-law to compress these signals into something that is both smaller than the original signal and recognizable to the human ear even if there is some data lost in compression. 
+
+The piecewise logarithm method, implementable in software, is a good way to approximate $\mu$-law to preform a lossy compression of audio samples. The algorithm was first implemented as a UML diagram to complete the requirements of the system and then converted into C code. After the C code was optimized to preform the same task in fewer instructions and less looking in memory. The assembly code was then generate through the \texttt{gcc} and more unnecessary instructions were taken out. After this was done, a simulation of the hardware that would replace this compression method was designed and tested. Finally, the hypothetical instruction described by the simulation replaced the $\mu$-law compression and expansion methods and the instruction count with the estimated latency of new instruction was used to analyse the performance of system with no optimizations, the system with optimizations, and the system with simulated hardware involved.\\
+
+Audio compression, software optimization and hardware design are what make such systems as telecommunications possible. These techniques and practices are permeated throughout the design world and are an import to having high performing systems.\\
+   
+
 \newpage
+\section{Bibliography}
+[1] M.Sima, ``SENG 440 Lesson 101 Project ‘Audio Compression’" $[$Online Document$]$\\
+http:\/\/www.ece.uvic.ca\/~msima\/TEACHING\/COURSES\/SENG\_440\/
+PROTECTED\/SLIDES\\\/SENG\_440\_slides\_Lesson\_project\_101.pdf\\
+$[$ Last accessed July 31 2019 $]$
 \end{document}

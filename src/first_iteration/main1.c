@@ -4,7 +4,8 @@
 #include "main.h"
 #include <time.h>
 
-int test = 1;
+int test = 0;
+int time_test = 1;
 int head_test = 0;
 #define HEAD_SIZE 0x4D
 
@@ -19,6 +20,36 @@ int main(int argc, char const *argv[]) {
       printf("%c", head[i]);
     }
     printf("\n");
+    return 0;
+  }
+  if (time_test) {
+    int i, j;
+    clock_t cstart, cend;
+    double total, average = 0;
+    for (i = 0; i < 20; i++) {
+      cstart = clock();
+      for (j = 0; j < 10000000; j++) {
+        compress_sample(0x01, 0xC0);
+      }
+      cend = clock();
+      printf("%lu\n", (cend - cstart));
+      total += ((double)(cend - cstart));
+    }
+    average = total/i;
+    printf("Average time to compress: %f\n", average/CLOCKS_PER_SEC);
+    average = 0;
+    total = 0;
+    for (i = 0; i < 20; i++) {
+      cstart = clock();
+      for (j = 0; j < 10000000; j++) {
+        expand_word(0x7F);
+      }
+      cend = clock();
+      printf("%lu\n", (cend - cstart));
+      total += ((double)(cend - cstart));
+    }
+    average = total / i;
+    printf("Average time to expand: %f\n", average/CLOCKS_PER_SEC);
     return 0;
   }
   if (test) {
@@ -66,10 +97,9 @@ int main(int argc, char const *argv[]) {
   if (!strncmp(argv[1], "-c", 2)) {
     f = ffile_opener(argv[2]);
     printf("%s\n", "Compressing file");
-    double start = clock();
+
     c = compress_file(f);
-    double end = clock();
-    printf("%g\n", (double) (end - start));
+
   } else if (!strncmp(argv[1], "-e", 2)) {
     c = cfile_opener(argv[2]);
     printf("%s\n", "Expanding file");

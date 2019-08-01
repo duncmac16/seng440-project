@@ -6,3 +6,5 @@
 \contentsline {subsection}{\numberline {3.3}Original Design}{5}
 \contentsline {subsection}{\numberline {3.4}Optimizations}{5}
 \contentsline {subsection}{\numberline {3.5}Hardware Design}{7}
+\contentsline {section}{\numberline {4}Conclusion}{9}
+\contentsline {section}{\numberline {5}Bibliography}{10}
